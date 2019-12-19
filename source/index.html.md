@@ -56,6 +56,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 **Responses**
 
 cheapest (the cheapest overall carrier/number of stops for the market)
+
 | Params | Values |
 | ---- | ----------- |
 | originAirportCode | ATPCO origin airport code |
@@ -65,7 +66,9 @@ cheapest (the cheapest overall carrier/number of stops for the market)
 | price | Itinerary price |
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+
 details (repeats for each carrier/number of stops for the market)
+
 | Params | Values |
 | ---- | ----------- |
 | originAirportCode | ATPCO origin airport code |

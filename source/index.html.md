@@ -55,7 +55,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 
 **Responses**
 
-cheapest (the cheapest overall carrier/number of stops for the market)
+*cheapest (the cheapest overall carrier/number of stops for the market)*
 
 | Params | Values |
 | ---- | ----------- |
@@ -67,7 +67,7 @@ cheapest (the cheapest overall carrier/number of stops for the market)
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
-details (repeats for each carrier/number of stops for the market)
+*details (repeats for each carrier/number of stops for the market)*
 
 | Params | Values |
 | ---- | ----------- |
@@ -78,6 +78,24 @@ details (repeats for each carrier/number of stops for the market)
 | price | Itinerary price |
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+
+language_tabs:
+- shell
+
+```shell
+curl -X POST \
+  'https://prices.3victors.com/RealTimePricesService/getCheapestPriceForTrip?=' \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Postman-Token: 3a664748-c16a-4f8e-85cb-539c030feeee' \
+  -H 'cache-control: no-cache' \
+  -H 'x-api-key: <x-api-key-value>'\
+  -d '{
+  "origin" : "OME",
+  "destination" : "ANC",
+  "departDate" : "20190319",
+  "returnDate" : "20190402"
+}'
+```
 
 ## ***PUT***
 

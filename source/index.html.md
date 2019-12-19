@@ -1,239 +1,495 @@
 ---
-title: API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: 3Victors API Documents
+
+language_tabs:
+   - shell
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+   - <a href='#'>Contact 3Victors for more information</a>
+   - <a href='https://www.3victors.com/'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+   - errors
 
 search: true
+
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+3Victors is a Travel Big Data company ingesting daily over 500 million worldwide travel searches and 90 billion itineraries in real-time from the world’s largest reservation systems.
+Providing data analytic solutions specific to your needs with insights into market trends, pricing, and lowest fares.
+Whether you need real-time access, hourly, daily, or a weekly summary, we have a solution to meet your needs.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+**Version:** 1.0.0
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+[Find out more about 3Victors](https://www.3victors.com/)
 
 # Authentication
 
-> To authorize, use this code:
+|services.host|*OAuth 2.0*|
+|---|---|
 
-```ruby
-require 'kittn'
+|x-api-key|<request access to key>*|
+|---|---|
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+# /getCheapestPriceForTrip
+## ***POST***
 
-```python
-import kittn
+**Summary:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for a market.
 
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
+**Description:**
 
 ### HTTP Request
+`***POST*** /getCheapestPriceForTrip`
 
-`GET http://example.com/api/kittens`
+**Parameters**
 
-### Query Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| origin | body | Requested ATPCO origin airport code | Yes | String |
+| destination | body | Requested ATPCO destination airport code | Yes | String |
+| departDate | body | Departure date | Yes | Integer YYYYMMDD |
+| returnDate | body | Return date | Yes | Integer YYYYMMDD |
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+**Responses**
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+| Code | Description |
+| ---- | ----------- |
+| 405 | Invalid input |
 
-## Get a Specific Kitten
+## ***PUT***
 
-```ruby
-require 'kittn'
+**Summary:** Update an existing pet
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
-}
-```
-
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+**Description:**
 
 ### HTTP Request
+`***PUT*** /pet`
 
-`GET http://example.com/kittens/<ID>`
+**Parameters**
 
-### URL Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body | Pet object that needs to be added to the store | Yes |  |
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+**Responses**
 
-## Delete a Specific Kitten
+| Code | Description |
+| ---- | ----------- |
+| 400 | Invalid ID supplied |
+| 404 | Pet not found |
+| 405 | Validation exception |
 
-```ruby
-require 'kittn'
+# /PET/FINDBYSTATUS
+## ***GET***
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+**Summary:** Finds Pets by status
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
+**Description:** Multiple status values can be provided with comma separated strings
 
 ### HTTP Request
+`***GET*** /pet/findByStatus`
 
-`DELETE http://example.com/kittens/<ID>`
+**Parameters**
 
-### URL Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| status | query | Status values that need to be considered for filter | Yes | array |
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+**Responses**
 
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid status value |
+
+# /PET/FINDBYTAGS
+## ***GET***
+
+**Summary:** Finds Pets by tags
+
+**Description:** Muliple tags can be provided with comma separated strings. Use         tag1, tag2, tag3 for testing.
+
+### HTTP Request
+`***GET*** /pet/findByTags`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| tags | query | Tags to filter by | Yes | array |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid tag value |
+
+# /PET/{PETID}
+## ***GET***
+
+**Summary:** Find pet by ID
+
+**Description:** Returns a single pet
+
+### HTTP Request
+`***GET*** /pet/{petId}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| petId | path | ID of pet to return | Yes | long |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid ID supplied |
+| 404 | Pet not found |
+
+## ***POST***
+
+**Summary:** Updates a pet in the store with form data
+
+**Description:**
+
+### HTTP Request
+`***POST*** /pet/{petId}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| petId | path | ID of pet that needs to be updated | Yes | long |
+| name | formData | Updated name of the pet | No | string |
+| status | formData | Updated status of the pet | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 405 | Invalid input |
+
+## ***DELETE***
+
+**Summary:** Deletes a pet
+
+**Description:**
+
+### HTTP Request
+`***DELETE*** /pet/{petId}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| api_key | header |  | No | string |
+| petId | path | Pet id to delete | Yes | long |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 400 | Invalid ID supplied |
+| 404 | Pet not found |
+
+# /PET/{PETID}/UPLOADIMAGE
+## ***POST***
+
+**Summary:** uploads an image
+
+**Description:**
+
+### HTTP Request
+`***POST*** /pet/{petId}/uploadImage`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| petId | path | ID of pet to update | Yes | long |
+| additionalMetadata | formData | Additional data to pass to server | No | string |
+| file | formData | file to upload | No | file |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+
+# /STORE/INVENTORY
+## ***GET***
+
+**Summary:** Returns pet inventories by status
+
+**Description:** Returns a map of status codes to quantities
+
+### HTTP Request
+`***GET*** /store/inventory`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+
+# /STORE/ORDER
+## ***POST***
+
+**Summary:** Place an order for a pet
+
+**Description:**
+
+### HTTP Request
+`***POST*** /store/order`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body | order placed for purchasing the pet | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid Order |
+
+# /STORE/ORDER/{ORDERID}
+## ***GET***
+
+**Summary:** Find purchase order by ID
+
+**Description:** For valid response try integer IDs with value >= 1 and <= 10.         Other values will generated exceptions
+
+### HTTP Request
+`***GET*** /store/order/{orderId}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| orderId | path | ID of pet that needs to be fetched | Yes | long |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid ID supplied |
+| 404 | Order not found |
+
+## ***DELETE***
+
+**Summary:** Delete purchase order by ID
+
+**Description:** For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors
+
+### HTTP Request
+`***DELETE*** /store/order/{orderId}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| orderId | path | ID of the order that needs to be deleted | Yes | long |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 400 | Invalid ID supplied |
+| 404 | Order not found |
+
+# /USER
+## ***POST***
+
+**Summary:** Create user
+
+**Description:** This can only be done by the logged in user.
+
+### HTTP Request
+`***POST*** /user`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body | Created user object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| default | successful operation |
+
+# /USER/CREATEWITHARRAY
+## ***POST***
+
+**Summary:** Creates list of users with given input array
+
+**Description:**
+
+### HTTP Request
+`***POST*** /user/createWithArray`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body | List of user object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| default | successful operation |
+
+# /USER/CREATEWITHLIST
+## ***POST***
+
+**Summary:** Creates list of users with given input array
+
+**Description:**
+
+### HTTP Request
+`***POST*** /user/createWithList`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body | List of user object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| default | successful operation |
+
+# /USER/LOGIN
+## ***GET***
+
+**Summary:** Logs user into the system
+
+**Description:**
+
+### HTTP Request
+`***GET*** /user/login`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| username | query | The user name for login | Yes | string |
+| password | query | The password for login in clear text | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid username/password supplied |
+
+# /USER/LOGOUT
+## ***GET***
+
+**Summary:** Logs out current logged in user session
+
+**Description:**
+
+### HTTP Request
+`***GET*** /user/logout`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| default | successful operation |
+
+# /USER/{USERNAME}
+## ***GET***
+
+**Summary:** Get user by user name
+
+**Description:**
+
+### HTTP Request
+`***GET*** /user/{username}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| username | path | The name that needs to be fetched. Use user1 for testing.  | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 | successful operation |
+| 400 | Invalid username supplied |
+| 404 | User not found |
+
+## ***PUT***
+
+**Summary:** Updated user
+
+**Description:** This can only be done by the logged in user.
+
+### HTTP Request
+`***PUT*** /user/{username}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| username | path | name that need to be updated | Yes | string |
+| body | body | Updated user object | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 400 | Invalid user supplied |
+| 404 | User not found |
+
+## ***DELETE***
+
+**Summary:** Delete user
+
+**Description:** This can only be done by the logged in user.
+
+### HTTP Request
+`***DELETE*** /user/{username}`
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| username | path | The name that needs to be deleted | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 400 | Invalid username supplied |
+| 404 | User not found |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->

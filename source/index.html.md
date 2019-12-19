@@ -79,8 +79,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
-language_tabs:
-- shell
+> A sample shell request
 
 ```shell
 curl -X POST \
@@ -95,6 +94,34 @@ curl -X POST \
   "departDate" : "20190319",
   "returnDate" : "20190402"
 }'
+```
+
+> A sample shell response
+
+```shell
+{
+    "cheapest": {
+        "originAirportCode": "OME",
+        "destinationAirportCode": "ANC",
+        "carrierCode": "AS",
+        "stops": 1,
+        "price": 338.2,
+        "departDate": 20190319,
+        "returnDate": 20190402
+    },
+    "details": [
+        {
+            "originAirportCode": "OME",
+            "destinationAirportCode": "ANC",
+            "carrierCode": "AS",
+            "stops": 0,
+            "price": 378.2,
+            "departDate": 20190319,
+            "returnDate": 20190402
+        }
+    ],
+    "error": null
+}
 ```
 
 ## ***PUT***

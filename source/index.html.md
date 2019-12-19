@@ -31,15 +31,15 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 |services.host|*OAuth 2.0*|
 |---|---|
 
-|x-api-key|<request access to key>*|
+|x-api-key|*<request access to key>*|
 |---|---|
 
 # /getCheapestPriceForTrip
 ## ***POST***
 
-**Summary:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for a market.
+**Summary:** Returns the cheapest price for a market with alternatives.
 
-**Description:**
+**Description:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for an origin, destination, depart date, and return date.
 
 ### HTTP Request
 `***POST*** /getCheapestPriceForTrip`
@@ -55,9 +55,26 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 
 **Responses**
 
-| Code | Description |
+cheapest (the cheapest overall carrier/number of stops for the market)
+| Params | Values |
 | ---- | ----------- |
-| 405 | Invalid input |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+details (repeats for each carrier/number of stops for the market)
+| Params | Values |
+| ---- | ----------- |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
 ## ***PUT***
 

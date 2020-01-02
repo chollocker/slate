@@ -45,15 +45,6 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 ### HTTP Request
 `***POST*** RealTimePricesService/getCheapestPriceForTrip`
 
-**Request Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| origin | body | Requested ATPCO origin airport code | Yes | String |
-| destination | body | Requested ATPCO destination airport code | Yes | String |
-| departDate | body | Departure date | Yes | Integer YYYYMMDD |
-| returnDate | body | Return date | Yes | Integer YYYYMMDD |
-
 > Sample request
 
 ```shell
@@ -80,31 +71,14 @@ curl -X POST \
 }
 ```
 
-**Responses**
+**Request Parameters**
 
-*cheapest (the cheapest overall carrier/number of stops for the market)*
-
-| Params | Values |
-| ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
-| carrierCode | IATA validating carrier code |
-| stops | Maximum number of stops |
-| price | Itinerary price |
-| departDate | Departure date. Format: YYYYMMDD |
-| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
-
-*details (repeats for each carrier/number of stops for the market)*
-
-| Params | Values |
-| ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
-| carrierCode | IATA validating carrier code |
-| stops | Maximum number of stops |
-| price | Itinerary price |
-| departDate | Departure date. Format: YYYYMMDD |
-| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| origin | body | Requested ATPCO origin airport code | Yes | String |
+| destination | body | Requested ATPCO destination airport code | Yes | String |
+| departDate | body | Departure date | Yes | Integer YYYYMMDD |
+| returnDate | body | Return date | Yes | Integer YYYYMMDD |
 
 > Sample response
 
@@ -159,6 +133,34 @@ curl -X POST \
     "error": null
 }
 ```
+
+**Responses**
+
+*cheapest (the cheapest overall carrier/number of stops for the market)*
+
+| Params | Values |
+| ---- | ----------- |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+
+*details (repeats for each carrier/number of stops for the market)*
+
+| Params | Values |
+| ---- | ----------- |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+
+
 
 
 ## ***PUT***

@@ -1,6 +1,6 @@
 ---
 
-title: 3Victors API Documents
+title: 3Victors API Documents - Real Time Prices Service
 
 language_tabs:
    - shell
@@ -17,7 +17,7 @@ search: true
 
 ---
 
-# Introduction
+# Introduction - Real Time Prices Service APIs
 
 3Victors is a Travel Big Data company ingesting daily over 500 million worldwide travel searches and 90 billion itineraries in real-time from the world’s largest reservation systems.
 Providing data analytic solutions specific to your needs with insights into market trends, pricing, and lowest fares.
@@ -35,7 +35,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 |x-api-key|Email <support@3victors.com> to request an API Key|
 |---|---|
 
-# RealTimePricesService/getCheapestPriceForTrip
+# getCheapestPriceForTrip
 ## ***POST***
 
 **Summary:** Returns the cheapest price for a market with alternatives.
@@ -160,7 +160,7 @@ curl -X POST \
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
-# RealTimePricesService/getCheapestPricePerDepartDate
+# getCheapestPricePerDepartDate
 ## ***POST***
 
 **Summary:** Returns the cheapest price for each departure date.
@@ -661,6 +661,221 @@ curl -X POST \
 | price | Itinerary price |
 | departDate | Departure date. Format: YYYYMMDD |
 
+# getCheapestPricePerReturnDate
+## ***POST***
+
+**Summary:** Returns the cheapest price for each return date.
+
+**Description:** Returns the cheapest price for a given origin, destination, and carrier for each return date between a specified departure date and ending return date.
+
+### HTTP Request
+`***POST*** RealTimePricesService/getCheapestPricePerReturnDate`
+
+> Sample request
+
+```shell
+curl -X POST \
+  https://prices.3victors.com/RealTimePricesService/getCheapestPricePerReturnDate \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Postman-Token: 852c5a71-e974-40f3-8a33-8b638bcfa7c8' \
+  -H 'cache-control: no-cache' \
+  -H 'x-api-key: <x-api-key-value>\
+  -d '{
+  "origin" : "DFW",
+  "destination" : "ORD",
+  "carrierCode" : "AA",
+  "departDate" : "20190320",
+  "returnDateEnd" : "20190330"
+}'
+```
+
+```javascript
+{
+  "origin" : "DFW",
+  "destination" : "ORD",
+  "carrierCode" : "AA",
+  "departDate" : "20190320",
+  "returnDateEnd" : "20190330"
+}
+```
+
+**Request Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| origin | body | Requested ATPCO origin airport code | Yes | String |
+| destination | body | Requested ATPCO destination airport code | Yes | String |
+| carrierCode | body | Validating IATA carrier code to return | Yes | String |
+| departDate | body | Departure date. Departure date is also starting return date. | Yes | Integer YYYYMMDD |
+| returnDateEnd | body | End return date | Yes | Integer YYYYMMDD |
+
+> Sample response
+
+```shell
+{
+"20190320": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 0,
+        "price": 787.78,
+        "departDate": 20190320,
+        "returnDate": 20190320
+    }
+],
+"20190322": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 795.3,
+        "departDate": 20190320,
+        "returnDate": 20190322
+    }
+],
+"20190323": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 0,
+        "price": 674.6,
+        "departDate": 20190320,
+        "returnDate": 20190323
+    },
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 683.3,
+        "departDate": 20190320,
+        "returnDate": 20190323
+    }
+],
+"20190326": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 525,
+        "departDate": 20190320,
+        "returnDate": 20190326
+    },
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 529.2,
+        "departDate": 20190320,
+        "returnDate": 20190326
+    },
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 0,
+        "price": 674.6,
+        "departDate": 20190320,
+        "returnDate": 20190326
+    }
+]
+}
+```
+
+```javascript
+{
+"20190320": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 0,
+        "price": 787.78,
+        "departDate": 20190320,
+        "returnDate": 20190320
+    }
+],
+"20190322": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 795.3,
+        "departDate": 20190320,
+        "returnDate": 20190322
+    }
+],
+"20190323": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 0,
+        "price": 674.6,
+        "departDate": 20190320,
+        "returnDate": 20190323
+    },
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 683.3,
+        "departDate": 20190320,
+        "returnDate": 20190323
+    }
+],
+"20190326": [
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 525,
+        "departDate": 20190320,
+        "returnDate": 20190326
+    },
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 529.2,
+        "departDate": 20190320,
+        "returnDate": 20190326
+    },
+    {
+        "originAirportCode": "DFW",
+        "destinationAirportCode": "ORD",
+        "carrierCode": "AA",
+        "stops": 0,
+        "price": 674.6,
+        "departDate": 20190320,
+        "returnDate": 20190326
+    }
+]
+}
+```
+
+**Responses**
+
+*returnDate (repeats for each return date)*
+
+| Params | Values |
+| ---- | ----------- |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD |
 
 # /PET/FINDBYSTATUS
 ## ***GET***

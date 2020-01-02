@@ -4,6 +4,7 @@ title: 3Victors API Documents
 
 language_tabs:
    - shell
+   - javascript
 
 toc_footers:
    - <a href='#'>Contact 3Victors for more information</a>
@@ -31,7 +32,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 |Content-Type|application/json;charset=UTF-8|
 |---|---|
 
-|x-api-key|[To request API Key, email](support@3victors.com)]
+|x-api-key|Email <support@3victors.com> to request an API Key|
 |---|---|
 
 # RealTimePricesService/getCheapestPriceForTrip
@@ -44,7 +45,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 ### HTTP Request
 `***POST*** RealTimePricesService/getCheapestPriceForTrip`
 
-**Parameters**
+**Request Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
@@ -52,32 +53,6 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 | destination | body | Requested ATPCO destination airport code | Yes | String |
 | departDate | body | Departure date | Yes | Integer YYYYMMDD |
 | returnDate | body | Return date | Yes | Integer YYYYMMDD |
-
-**Responses**
-
-*cheapest (the cheapest overall carrier/number of stops for the market)*
-
-| Params | Values |
-| ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
-| carrierCode | IATA validating carrier code |
-| stops | Maximum number of stops |
-| price | Itinerary price |
-| departDate | Departure date. Format: YYYYMMDD |
-| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
-
-*details (repeats for each carrier/number of stops for the market)*
-
-| Params | Values |
-| ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
-| carrierCode | IATA validating carrier code |
-| stops | Maximum number of stops |
-| price | Itinerary price |
-| departDate | Departure date. Format: YYYYMMDD |
-| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
 > Sample request
 
@@ -104,6 +79,32 @@ curl -X POST \
   "returnDate" : "20190402"
 }
 ```
+
+**Responses**
+
+*cheapest (the cheapest overall carrier/number of stops for the market)*
+
+| Params | Values |
+| ---- | ----------- |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
+
+*details (repeats for each carrier/number of stops for the market)*
+
+| Params | Values |
+| ---- | ----------- |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
 > Sample response
 

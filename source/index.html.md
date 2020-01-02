@@ -32,7 +32,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 ## Authentication
 
 | Key | Value |
-| ---- | ---------- | ----------- | -------- | ---- |
+| ---- | ---------- |
 | Content-Type | application/json;charset=UTF-8 |
 | x-api-key | Email <support@3victors.com> to request an API Key| |
 

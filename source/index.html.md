@@ -1534,27 +1534,3 @@ curl -X POST \
 | price | Itinerary price |
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
-
-## ***DELETE***
-
-**Summary:** Delete user
-
-**Description:** This can only be done by the logged in user.
-
-### HTTP Request
-`***DELETE*** /user/{username}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| username | path | The name that needs to be deleted | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 400 | Invalid username supplied |
-| 404 | User not found |
-
-<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->

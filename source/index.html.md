@@ -160,31 +160,507 @@ curl -X POST \
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
+# RealTimePricesService/getCheapestPricePerDepartDate
+## ***POST***
 
+**Summary:** Returns the cheapest price for each departure date.
 
-
-## ***PUT***
-
-**Summary:** Update an existing pet
-
-**Description:**
+**Description:** Returns the cheapest price for each departure date in a specified range for an origin / destination.
 
 ### HTTP Request
-`***PUT*** /pet`
+`***POST*** RealTimePricesService/getCheapestPricePerDepartDate`
 
-**Parameters**
+> Sample request
+
+```shell
+curl -X POST \
+  https://prices.3victors.com/RealTimePricesService/getCheapestPricePerDepartDate \
+  -H 'Content-Type: application/json;charset=UTF-8' \
+  -H 'Postman-Token: f5a092b8-f7d3-4090-9590-b0cce40fb313' \
+  -H 'cache-control: no-cache' \
+  -H 'x-api-key: <x-api-key-value>\
+  -d '{
+  "origin" : "CUN",
+  "destination" : "EWR",
+  "roundtrip" : "true",
+  "departDateStart" : "20190926",
+  "departDateEnd" : "20190928"
+}'
+```
+
+```javascript
+{
+  "origin" : "CUN",
+  "destination" : "EWR",
+  "roundtrip" : "true",
+  "departDateStart" : "20190926",
+  "departDateEnd" : "20190928"
+}
+```
+
+**Request Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| body | body | Pet object that needs to be added to the store | Yes |  |
+| origin | body | Requested ATPCO origin airport code | Yes | String |
+| destination | body | Requested ATPCO destination airport code | Yes | String |
+| roundtrip | body | Send “true” for roundtrip and “false” for oneway trips. Defaults to true if missing. | No | Boolean |
+| departDateStart | body | Start departure date. Defaults to today if missing. | No | Integer YYYYMMDD |
+| departDateEnd | body | End departure date | No | Integer YYYYMMDD |
+
+> Sample response
+
+```shell
+{
+"20190926": [
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!T",
+        "stops": 1,
+        "price": 234.91,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!T",
+        "stops": 2,
+        "price": 273.11,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "NK",
+        "stops": 1,
+        "price": 277.04,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 2,
+        "price": 342.93,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 372.35,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "DL",
+        "stops": 1,
+        "price": 422.39,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 1,
+        "price": 426.42,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 1,
+        "price": 428.72,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 0,
+        "price": 516,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AC",
+        "stops": 1,
+        "price": 553.97,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "DL",
+        "stops": 2,
+        "price": 568.65,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 1,
+        "price": 574.51,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 761.31,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!A",
+        "stops": 1,
+        "price": 1121.74,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 2,
+        "price": 1171.23,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 0,
+        "price": 1194.1,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 1928.63,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!A",
+        "stops": 2,
+        "price": 2344.91,
+        "departDate": 20190926
+    }
+],
+"20190927": [
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 1,
+        "price": 379.21,
+        "departDate": 20190927
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 2,
+        "price": 605.91,
+        "departDate": 20190927
+    }
+],
+"20190928": [
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 1,
+        "price": 374.71,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 1,
+        "price": 481.19,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 2,
+        "price": 532.01,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 0,
+        "price": 609.15,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AC",
+        "stops": 1,
+        "price": 626.07,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 1,
+        "price": 723.7,
+        "departDate": 20190928
+    }
+]
+}
+```
+
+```javascript
+{
+"20190926": [
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!T",
+        "stops": 1,
+        "price": 234.91,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!T",
+        "stops": 2,
+        "price": 273.11,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "NK",
+        "stops": 1,
+        "price": 277.04,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 2,
+        "price": 342.93,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 372.35,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "DL",
+        "stops": 1,
+        "price": 422.39,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 1,
+        "price": 426.42,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 1,
+        "price": 428.72,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 0,
+        "price": 516,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AC",
+        "stops": 1,
+        "price": 553.97,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "DL",
+        "stops": 2,
+        "price": 568.65,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 1,
+        "price": 574.51,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 761.31,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!A",
+        "stops": 1,
+        "price": 1121.74,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 2,
+        "price": 1171.23,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 0,
+        "price": 1194.1,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 1928.63,
+        "departDate": 20190926
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!A",
+        "stops": 2,
+        "price": 2344.91,
+        "departDate": 20190926
+    }
+],
+"20190927": [
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 1,
+        "price": 379.21,
+        "departDate": 20190927
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 2,
+        "price": 605.91,
+        "departDate": 20190927
+    }
+],
+"20190928": [
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 1,
+        "price": 374.71,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 1,
+        "price": 481.19,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AM",
+        "stops": 2,
+        "price": 532.01,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "UA",
+        "stops": 0,
+        "price": 609.15,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "AC",
+        "stops": 1,
+        "price": 626.07,
+        "departDate": 20190928
+    },
+    {
+        "originAirportCode": "CUN",
+        "destinationAirportCode": "EWR",
+        "carrierCode": "!!",
+        "stops": 1,
+        "price": 723.7,
+        "departDate": 20190928
+    }
+]
+}
+```
 
 **Responses**
 
-| Code | Description |
+*departDate (repeats for each departure date)*
+
+| Params | Values |
 | ---- | ----------- |
-| 400 | Invalid ID supplied |
-| 404 | Pet not found |
-| 405 | Validation exception |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+
 
 # /PET/FINDBYSTATUS
 ## ***GET***

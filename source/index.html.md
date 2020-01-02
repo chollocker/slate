@@ -877,393 +877,663 @@ curl -X POST \
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD |
 
-# /PET/FINDBYSTATUS
-## ***GET***
-
-**Summary:** Finds Pets by status
-
-**Description:** Multiple status values can be provided with comma separated strings
-
-### HTTP Request
-`***GET*** /pet/findByStatus`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| status | query | Status values that need to be considered for filter | Yes | array |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid status value |
-
-# /PET/FINDBYTAGS
-## ***GET***
-
-**Summary:** Finds Pets by tags
-
-**Description:** Muliple tags can be provided with comma separated strings. Use         tag1, tag2, tag3 for testing.
-
-### HTTP Request
-`***GET*** /pet/findByTags`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| tags | query | Tags to filter by | Yes | array |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid tag value |
-
-# /PET/{PETID}
-## ***GET***
-
-**Summary:** Find pet by ID
-
-**Description:** Returns a single pet
-
-### HTTP Request
-`***GET*** /pet/{petId}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| petId | path | ID of pet to return | Yes | long |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid ID supplied |
-| 404 | Pet not found |
-
+# getMeOutOfTown
 ## ***POST***
 
-**Summary:** Updates a pet in the store with form data
+**Summary:** Returns weekend deals from an origin.
 
-**Description:**
+**Description:** Returns weekend deals from an origin. Weekend departures are Thursday, Friday, and Saturday. 
 
 ### HTTP Request
-`***POST*** /pet/{petId}`
+`***POST*** RealTimePricesService/getMeOutOfTown`
 
-**Parameters**
+> Sample request
+
+```shell
+curl -X POST \
+   https://prices.3victors.com/RealTimePricesService/getMeOutOfTown \
+   -H 'Content-Type: application/json;charset=UTF-8' \
+   -H 'Postman-Token: 639d2ec2-1771-4c45-a7f5-54f8ae8c1dc7' \
+   -H 'cache-control: no-cache' \
+   -H 'x-api-key: <x-api-key-value>\
+   -d '{
+  "origin" : "ABI",
+  "destinations" : ["LAX","ONT","SNA","SAT","OAK","DEN","SJC","BUR"],
+  "weekend" : "2"
+}'
+```
+
+```javascript
+{
+  "origin" : "ABI",
+  "destinations" : ["LAX","ONT","SNA","SAT","OAK","DEN","SJC","BUR"],
+  "weekend" : "2"
+}
+```
+
+**Request Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| petId | path | ID of pet that needs to be updated | Yes | long |
-| name | formData | Updated name of the pet | No | string |
-| status | formData | Updated status of the pet | No | string |
+| origin | body | Requested ATPCO origin airport code | Yes | String |
+| destinations | body | List of ATPCO destination airport code(s) to examine. Defaults to all if missing. | No | String array enclosed in [] |
+| weekend | body | Number of weekends out for deals. 0 returns deals for upcoming weekend, 1 for the following weekend, etc. | Yes | Integer |
+
+> Sample response
+
+```shell
+{
+"LAX": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 528.8,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "AS",
+        "stops": 2,
+        "price": 2448.01,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2721.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"ONT": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "ONT",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 499.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "ONT",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 576.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "ONT",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2654.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"SNA": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SNA",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 459.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SNA",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 541.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SNA",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2940.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"SAT": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SAT",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 405.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    }
+],
+"OAK": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 531.8,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "AA",
+        "stops": 3,
+        "price": 625.99,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2341.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"DEN": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 395.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 395.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 613.8,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AS",
+        "stops": 2,
+        "price": 2545,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 3252,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    }
+],
+"SJC": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 433.8,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 433.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AS",
+        "stops": 2,
+        "price": 1058.01,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AS",
+        "stops": 3,
+        "price": 1501.2,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 1664.8,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "!!",
+        "stops": 1,
+        "price": 1739.62,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    }
+],
+"BUR": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "BUR",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 459.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "BUR",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 541.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "BUR",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2762.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+]
+}
+```
+
+```javascript
+{
+"LAX": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 528.8,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "AS",
+        "stops": 2,
+        "price": 2448.01,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "LAX",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2721.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"ONT": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "ONT",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 499.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "ONT",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 576.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "ONT",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2654.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"SNA": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SNA",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 459.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SNA",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 541.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SNA",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2940.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"SAT": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SAT",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 405.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    }
+],
+"OAK": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 531.8,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "AA",
+        "stops": 3,
+        "price": 625.99,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "OAK",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2341.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+],
+"DEN": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 395.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 395.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 613.8,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "AS",
+        "stops": 2,
+        "price": 2545,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "DEN",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 3252,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    }
+],
+"SJC": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 429.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 433.8,
+        "departDate": 20190405,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 433.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AS",
+        "stops": 2,
+        "price": 1058.01,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "AS",
+        "stops": 3,
+        "price": 1501.2,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 1664.8,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "SJC",
+        "carrierCode": "!!",
+        "stops": 1,
+        "price": 1739.62,
+        "departDate": 20190404,
+        "returnDate": 20190407
+    }
+],
+"BUR": [
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "BUR",
+        "carrierCode": "AA",
+        "stops": 1,
+        "price": 459.6,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "BUR",
+        "carrierCode": "AA",
+        "stops": 2,
+        "price": 541.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    },
+    {
+        "originAirportCode": "ABI",
+        "destinationAirportCode": "BUR",
+        "carrierCode": "!!",
+        "stops": 2,
+        "price": 2762.8,
+        "departDate": 20190405,
+        "returnDate": 20190408
+    }
+]
+}
+```
 
 **Responses**
 
-| Code | Description |
+*destination (repeats for each destination)*
+
+| Params | Values |
 | ---- | ----------- |
-| 405 | Invalid input |
-
-## ***DELETE***
-
-**Summary:** Deletes a pet
-
-**Description:**
-
-### HTTP Request
-`***DELETE*** /pet/{petId}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| api_key | header |  | No | string |
-| petId | path | Pet id to delete | Yes | long |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 400 | Invalid ID supplied |
-| 404 | Pet not found |
-
-# /PET/{PETID}/UPLOADIMAGE
-## ***POST***
-
-**Summary:** uploads an image
-
-**Description:**
-
-### HTTP Request
-`***POST*** /pet/{petId}/uploadImage`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| petId | path | ID of pet to update | Yes | long |
-| additionalMetadata | formData | Additional data to pass to server | No | string |
-| file | formData | file to upload | No | file |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-
-# /STORE/INVENTORY
-## ***GET***
-
-**Summary:** Returns pet inventories by status
-
-**Description:** Returns a map of status codes to quantities
-
-### HTTP Request
-`***GET*** /store/inventory`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-
-# /STORE/ORDER
-## ***POST***
-
-**Summary:** Place an order for a pet
-
-**Description:**
-
-### HTTP Request
-`***POST*** /store/order`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body | order placed for purchasing the pet | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid Order |
-
-# /STORE/ORDER/{ORDERID}
-## ***GET***
-
-**Summary:** Find purchase order by ID
-
-**Description:** For valid response try integer IDs with value >= 1 and <= 10.         Other values will generated exceptions
-
-### HTTP Request
-`***GET*** /store/order/{orderId}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| orderId | path | ID of pet that needs to be fetched | Yes | long |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid ID supplied |
-| 404 | Order not found |
-
-## ***DELETE***
-
-**Summary:** Delete purchase order by ID
-
-**Description:** For valid response try integer IDs with positive integer value.         Negative or non-integer values will generate API errors
-
-### HTTP Request
-`***DELETE*** /store/order/{orderId}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| orderId | path | ID of the order that needs to be deleted | Yes | long |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 400 | Invalid ID supplied |
-| 404 | Order not found |
-
-# /USER
-## ***POST***
-
-**Summary:** Create user
-
-**Description:** This can only be done by the logged in user.
-
-### HTTP Request
-`***POST*** /user`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body | Created user object | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| default | successful operation |
-
-# /USER/CREATEWITHARRAY
-## ***POST***
-
-**Summary:** Creates list of users with given input array
-
-**Description:**
-
-### HTTP Request
-`***POST*** /user/createWithArray`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body | List of user object | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| default | successful operation |
-
-# /USER/CREATEWITHLIST
-## ***POST***
-
-**Summary:** Creates list of users with given input array
-
-**Description:**
-
-### HTTP Request
-`***POST*** /user/createWithList`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body | List of user object | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| default | successful operation |
-
-# /USER/LOGIN
-## ***GET***
-
-**Summary:** Logs user into the system
-
-**Description:**
-
-### HTTP Request
-`***GET*** /user/login`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| username | query | The user name for login | Yes | string |
-| password | query | The password for login in clear text | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid username/password supplied |
-
-# /USER/LOGOUT
-## ***GET***
-
-**Summary:** Logs out current logged in user session
-
-**Description:**
-
-### HTTP Request
-`***GET*** /user/logout`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| default | successful operation |
-
-# /USER/{USERNAME}
-## ***GET***
-
-**Summary:** Get user by user name
-
-**Description:**
-
-### HTTP Request
-`***GET*** /user/{username}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| username | path | The name that needs to be fetched. Use user1 for testing.  | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 | successful operation |
-| 400 | Invalid username supplied |
-| 404 | User not found |
-
-## ***PUT***
-
-**Summary:** Updated user
-
-**Description:** This can only be done by the logged in user.
-
-### HTTP Request
-`***PUT*** /user/{username}`
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| username | path | name that need to be updated | Yes | string |
-| body | body | Updated user object | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 400 | Invalid user supplied |
-| 404 | User not found |
+| originAirportCode | ATPCO origin airport code |
+| destinationAirportCode | ATPCO destination airport code |
+| carrierCode | IATA validating carrier code |
+| stops | Maximum number of stops |
+| price | Itinerary price |
+| departDate | Departure date. Format: YYYYMMDD |
+| returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
 ## ***DELETE***
 

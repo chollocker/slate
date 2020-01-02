@@ -17,7 +17,7 @@ search: true
 
 ---
 
-# Introduction - Real Time Prices Service APIs
+# Introduction
 
 3Victors is a Travel Big Data company ingesting daily over 500 million worldwide travel searches and 90 billion itineraries in real-time from the world’s largest reservation systems.
 Providing data analytic solutions specific to your needs with insights into market trends, pricing, and lowest fares.
@@ -27,22 +27,23 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 
 [Find out more about 3Victors](https://www.3victors.com/)
 
-# Authentication
+## Real Time Prices Service APIs
 
-|Content-Type|application/json;charset=UTF-8|
-|---|---|
+### Authentication
 
-|x-api-key|Email <support@3victors.com> to request an API Key|
-|---|---|
+| Key | Value |
+| ---- | ---------- | ----------- | -------- | ---- |
+| Content-Type | application/json;charset=UTF-8 |
+| x-api-key | Email <support@3victors.com> to request an API Key| |
 
-# getCheapestPriceForTrip
-## ***POST***
+#### getCheapestPriceForTrip
+##### ***POST***
 
 **Summary:** Returns the cheapest price for a market with alternatives.
 
 **Description:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for an origin, destination, depart date, and return date.
 
-### HTTP Request
+#### HTTP Request
 `***POST*** RealTimePricesService/getCheapestPriceForTrip`
 
 > Sample request
@@ -160,14 +161,14 @@ curl -X POST \
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
-# getCheapestPricePerDepartDate
-## ***POST***
+### getCheapestPricePerDepartDate
+#### ***POST***
 
 **Summary:** Returns the cheapest price for each departure date.
 
 **Description:** Returns the cheapest price for each departure date in a specified range for an origin / destination.
 
-### HTTP Request
+#### HTTP Request
 `***POST*** RealTimePricesService/getCheapestPricePerDepartDate`
 
 > Sample request
@@ -661,14 +662,14 @@ curl -X POST \
 | price | Itinerary price |
 | departDate | Departure date. Format: YYYYMMDD |
 
-# getCheapestPricePerReturnDate
-## ***POST***
+### getCheapestPricePerReturnDate
+#### ***POST***
 
 **Summary:** Returns the cheapest price for each return date.
 
 **Description:** Returns the cheapest price for a given origin, destination, and carrier for each return date between a specified departure date and ending return date.
 
-### HTTP Request
+#### HTTP Request
 `***POST*** RealTimePricesService/getCheapestPricePerReturnDate`
 
 > Sample request
@@ -877,14 +878,14 @@ curl -X POST \
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD |
 
-# getMeOutOfTown
-## ***POST***
+### getMeOutOfTown
+#### ***POST***
 
 **Summary:** Returns weekend deals from an origin.
 
 **Description:** Returns weekend deals from an origin. Weekend departures are Thursday, Friday, and Saturday. 
 
-### HTTP Request
+#### HTTP Request
 `***POST*** RealTimePricesService/getMeOutOfTown`
 
 > Sample request

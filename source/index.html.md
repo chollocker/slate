@@ -28,13 +28,13 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 
 # Authentication
 
-|services.host|*OAuth 2.0*|
+|Content-Type|application/json;charset=UTF-8|
 |---|---|
 
-|x-api-key|*<request access to key>*|
+|x-api-key|[To request API Key, email](support@3victors.com)]
 |---|---|
 
-# /getCheapestPriceForTrip
+# RealTimePricesService/getCheapestPriceForTrip
 ## ***POST***
 
 **Summary:** Returns the cheapest price for a market with alternatives.
@@ -42,7 +42,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 **Description:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for an origin, destination, depart date, and return date.
 
 ### HTTP Request
-`***POST*** /getCheapestPriceForTrip`
+`***POST*** RealTimePricesService/getCheapestPriceForTrip`
 
 **Parameters**
 
@@ -79,7 +79,7 @@ Whether you need real-time access, hourly, daily, or a weekly summary, we have a
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
-> A sample shell request
+> Sample request
 
 ```shell
 curl -X POST \
@@ -96,7 +96,16 @@ curl -X POST \
 }'
 ```
 
-> A sample shell response
+```javascript
+{
+  "origin" : "OME",
+  "destination" : "ANC",
+  "departDate" : "20190319",
+  "returnDate" : "20190402"
+}
+```
+
+> Sample response
 
 ```shell
 {
@@ -123,6 +132,33 @@ curl -X POST \
     "error": null
 }
 ```
+
+```javascript
+{
+    "cheapest": {
+        "originAirportCode": "OME",
+        "destinationAirportCode": "ANC",
+        "carrierCode": "AS",
+        "stops": 1,
+        "price": 338.2,
+        "departDate": 20190319,
+        "returnDate": 20190402
+    },
+    "details": [
+        {
+            "originAirportCode": "OME",
+            "destinationAirportCode": "ANC",
+            "carrierCode": "AS",
+            "stops": 0,
+            "price": 378.2,
+            "departDate": 20190319,
+            "returnDate": 20190402
+        }
+    ],
+    "error": null
+}
+```
+
 
 ## ***PUT***
 

@@ -1,6 +1,6 @@
 ---
 
-title: 3Victors Real Time Prices Service APIs
+title: Real Time Prices Service APIs
 
 language_tabs:
    - shell
@@ -17,7 +17,7 @@ search: true
 
 ---
 
-# Introduction
+# 3Victors
 
 3Victors is a Travel Big Data company ingesting daily over 500 million worldwide travel searches and 90 billion itineraries in real-time from the world’s largest reservation systems.
 Providing data analytic solutions specific to your needs with insights into market trends, pricing, and lowest fares.

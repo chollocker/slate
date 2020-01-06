@@ -1,6 +1,6 @@
 ---
 
-title: 3Victors API Documents - Real Time Prices Service
+title: 3Victors Real Time Prices Service APIs
 
 language_tabs:
    - shell

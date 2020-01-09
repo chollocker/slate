@@ -7,8 +7,9 @@ language_tabs:
    - javascript
 
 toc_footers:
-   - <a href='#'>Contact 3Victors for more information</a>
-   - <a href='https://www.3victors.com/'>Documentation Powered by Slate</a>
+   - <a href='https://www.3victors.com/'>Contact 3Victors for more information</a>
+   - <a href='#'></a>
+   - <a href='#'>Documentation powered by Slate</a>
 
 includes:
    - errors

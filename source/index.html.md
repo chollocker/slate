@@ -335,8 +335,8 @@ curl -X POST \
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| origin | body | Requested ATPCO origin airport code | Yes | String |
-| destination | body | Requested ATPCO destination airport code | Yes | String |
+| origin | body | Requested IATA origin airport code | Yes | String |
+| destination | body | Requested IATA destination airport code | Yes | String |
 | roundtrip | body | Send “true” for roundtrip and “false” for oneway trips. Defaults to true if missing. | No | Boolean |
 | departDateStart | body | Start departure date. Defaults to today if missing. | No | Integer YYYYMMDD |
 | departDateEnd | body | End departure date | No | Integer YYYYMMDD |
@@ -1879,8 +1879,8 @@ curl -X POST \
 
 | Params | Values |
 | ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
+| originAirportCode | IATA origin airport code |
+| destinationAirportCode | IATA destination airport code |
 | carrierCode | IATA validating carrier code |
 | stops | Maximum number of stops |
 | price | Itinerary price |
@@ -1935,8 +1935,8 @@ curl -X POST \
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| origin | body | Requested ATPCO origin airport code | Yes | String |
-| destination | body | Requested ATPCO destination airport code | Yes | String |
+| origin | body | Requested IATA origin airport code | Yes | String |
+| destination | body | Requested IATA destination airport code | Yes | String |
 | carrierCode | body | Validating IATA carrier code to return | Yes | String |
 | departDate | body | Departure date. Departure date is also starting return date. | Yes | Integer YYYYMMDD |
 | returnDateEnd | body | End return date | Yes | Integer YYYYMMDD |
@@ -2322,8 +2322,8 @@ curl -X POST \
 
 | Params | Values |
 | ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
+| originAirportCode | IATA origin airport code |
+| destinationAirportCode | IATA destination airport code |
 | carrierCode | IATA validating carrier code |
 | stops | Maximum number of stops |
 | price | Itinerary price |
@@ -2375,8 +2375,8 @@ curl -X POST \
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| origin | body | Requested ATPCO origin airport code | Yes | String |
-| destinations | body | List of ATPCO destination airport code(s) to examine. Defaults to all if missing. | No | String array enclosed in [] |
+| origin | body | Requested IATA origin airport code | Yes | String |
+| destinations | body | List of IATA destination airport code(s) to examine. Defaults to all if missing. | No | String array enclosed in [] |
 | weekend | body | Number of weekends out for deals. 0 returns deals for upcoming weekend, 1 for the following weekend, etc. | Yes | Integer |
 
 > Sample response
@@ -3185,8 +3185,8 @@ curl -X POST \
 
 | Params | Values |
 | ---- | ----------- |
-| originAirportCode | ATPCO origin airport code |
-| destinationAirportCode | ATPCO destination airport code |
+| originAirportCode | IATA origin airport code |
+| destinationAirportCode | IATA destination airport code |
 | carrierCode | IATA validating carrier code |
 | stops | Maximum number of stops |
 | price | Itinerary price |

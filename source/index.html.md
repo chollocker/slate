@@ -32,9 +32,12 @@ Documentation powered by Slate
 
 ## Authentication
 
-| Key | Value |
+| Variable | Value |
 | ---- | ---------- |
 | services.host | api.3victorseap.com |
+
+| Key | Value |
+| ---- | ---------- |
 | Content-Type | application/json;charset=UTF-8 |
 | x-api-key | Email <support@3victors.com> to request an API Key| |
 
@@ -46,7 +49,8 @@ Documentation powered by Slate
 **Description:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for an origin, destination, depart date, and return date.
 
 ### HTTP Request
-`***POST*** https://{{services.host}}/RealTimePricesService/getCheapestPriceForTrip`
+`***POST***` 
+`https://{{services.host}}/RealTimePricesService/getCheapestPriceForTrip`
 
 > Sample request
 

@@ -34,6 +34,7 @@ Documentation powered by Slate
 
 | Key | Value |
 | ---- | ---------- |
+| services.host | api.3victorseap.com |
 | Content-Type | application/json;charset=UTF-8 |
 | x-api-key | Email <support@3victors.com> to request an API Key| |
 
@@ -45,7 +46,7 @@ Documentation powered by Slate
 **Description:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for an origin, destination, depart date, and return date.
 
 ### HTTP Request
-`***POST*** RealTimePricesService/getCheapestPriceForTrip`
+`***POST*** https://{{services.host}}/RealTimePricesService/getCheapestPriceForTrip`
 
 > Sample request
 
@@ -286,6 +287,12 @@ curl -X POST \
 | departDate | Departure date. Format: YYYYMMDD |
 | returnDate | Return date. Format: YYYYMMDD. 0 for oneway trip |
 
+*error*
+
+| Params | Values |
+| ---- | ----------- |
+| error | Error message. Usually null |
+
 ## getCheapestPricePerDepartDate
 ### ***POST***
 
@@ -294,7 +301,7 @@ curl -X POST \
 **Description:** Returns the cheapest price for each departure date in a specified range for an origin / destination.
 
 ### HTTP Request
-`***POST*** RealTimePricesService/getCheapestPricePerDepartDate`
+`***POST*** https://{{services.host}}/RealTimePricesService/getCheapestPricePerDepartDate`
 
 > Sample request
 
@@ -1894,7 +1901,7 @@ curl -X POST \
 **Description:** Returns the cheapest price for a given origin, destination, and carrier for each return date between a specified departure date and ending return date.
 
 ### HTTP Request
-`***POST*** RealTimePricesService/getCheapestPricePerReturnDate`
+`***POST*** https://{{services.host}}/RealTimePricesService/getCheapestPricePerReturnDate`
 
 > Sample request
 
@@ -2338,7 +2345,7 @@ curl -X POST \
 **Description:** Returns weekend deals from an origin. Weekend departures are Thursday, Friday, and Saturday. 
 
 ### HTTP Request
-`***POST*** RealTimePricesService/getMeOutOfTown`
+`***POST*** https://{{services.host}}/RealTimePricesService/getMeOutOfTown`
 
 > Sample request
 

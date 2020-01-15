@@ -49,8 +49,7 @@ Documentation powered by Slate
 **Description:** Returns the cheapest price, carrier, & stops, and carrier / stop alternatives for an origin, destination, depart date, and return date.
 
 ### HTTP Request
-`***POST***` 
-`https://{{services.host}}/RealTimePricesService/getCheapestPriceForTrip`
+`***POST*** https://{{services.host}}/RealTimePricesService/getCheapestPriceForTrip`
 
 > Sample request
 
